@@ -1,0 +1,101 @@
+options:
+  parameters:
+    author: adahlhoff
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: no_gui
+    hier_block_src_path: '.:'
+    id: untitled
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: run
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: ping
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '32000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: blocks_message_debug_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    en_uvec: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [512, 264.0]
+    rotation: 0
+    state: true
+- name: blocks_message_strobe_0
+  id: blocks_message_strobe
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    msg: pmt.intern("CLICK")
+    period: '2500'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [224, 188.0]
+    rotation: 0
+    state: true
+- name: zeromq_pub_msg_sink_0
+  id: zeromq_pub_msg_sink
+  parameters:
+    address: tcp://127.0.0.1:5556
+    affinity: ''
+    alias: ''
+    bind: 'True'
+    comment: ''
+    timeout: '250'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 156.0]
+    rotation: 0
+    state: true
+
+connections:
+- [blocks_message_strobe_0, strobe, blocks_message_debug_0, print]
+- [blocks_message_strobe_0, strobe, zeromq_pub_msg_sink_0, in]
+
+metadata:
+  file_format: 1

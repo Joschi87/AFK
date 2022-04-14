@@ -1,0 +1,4 @@
+https://www.ee.iitb.ac.in/student/~vishrant/ofdm-tranmission-reception.pdf
+https://zeromq.org/socket-api/
+
+
